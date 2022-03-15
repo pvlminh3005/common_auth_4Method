@@ -5,12 +5,14 @@ class ButtonCustom extends StatefulWidget {
   final Function? onPressed;
   final Color color;
   final double? width;
+  final bool disable;
 
   const ButtonCustom(
     this.title, {
     this.onPressed,
     this.color = Colors.blue,
     this.width,
+    this.disable = false,
     Key? key,
   }) : super(key: key);
 
@@ -46,13 +48,15 @@ class _ButtonCustomState extends State<ButtonCustom> {
               : Text(widget.title),
         ),
       ),
-      onPressed: () async {
-        setState(() => loading = true);
-        await widget.onPressed!();
-        if (mounted) {
-          setState(() => loading = false);
-        }
-      },
+      onPressed: widget.disable
+          ? null
+          : () async {
+              setState(() => loading = true);
+              await widget.onPressed!();
+              if (mounted) {
+                setState(() => loading = false);
+              }
+            },
     );
   }
 }

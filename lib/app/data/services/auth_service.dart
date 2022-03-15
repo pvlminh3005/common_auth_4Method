@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_auth_firebase/app/config/constants/application.dart';
 import 'package:test_auth_firebase/app/data/services/user_service.dart';
@@ -81,6 +82,46 @@ class AuthService extends GetxService {
       }
       throw Exception(e);
     }
+  }
+
+  void signInWithPhoneNumber(
+    String yourPhone, {
+    Function(String)? onSuccess,
+    Function(FirebaseAuthException)? onFailed,
+    Function(String)? onTimeout,
+  }) {
+    _firebaseAuth.verifyPhoneNumber(
+      phoneNumber: yourPhone,
+      verificationCompleted: (PhoneAuthCredential credential) {
+        print(credential);
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        onFailed?.call(e);
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        onSuccess?.call(verificationId);
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        onTimeout?.call(verificationId);
+      },
+    );
+  }
+
+  Future<void> verifyOTP({
+    required String verificationId,
+    required String code,
+    required Function(UserCredential) onSuccess,
+    required Function(dynamic) onError,
+  }) async {
+    var credentials = PhoneAuthProvider.credential(
+      verificationId: verificationId,
+      smsCode: code,
+    );
+
+    await _firebaseAuth
+        .signInWithCredential(credentials)
+        .then(onSuccess)
+        .catchError(onError);
   }
 
   Future<void> signOut() async {

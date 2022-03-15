@@ -10,8 +10,8 @@ import 'package:test_auth_firebase/app/modules/app/views/app_view.dart';
 import 'app/config/constants/application.dart';
 import 'app/data/services/services.dart';
 
-void main() async {
-  runZonedGuarded<Future<void>>(
+void main() {
+  runZonedGuarded(
     () async {
       await initService();
       runApp(
@@ -21,14 +21,13 @@ void main() async {
         ),
       );
     },
-    (error, stack) => Get.log('ERROR main 25'),
+    (error, stack) => Get.log(error.toString()),
   );
 }
 
 Future<void> initService() async {
   Get.log('Starting services');
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
   await Application.setPreferences();
   await Services.register();

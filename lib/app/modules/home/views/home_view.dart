@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:test_auth_firebase/app/widgets/button_custom.dart';
+import 'package:test_auth_firebase/app/widgets/common/button_custom.dart';
 
 import '../controllers/home_controller.dart';
 

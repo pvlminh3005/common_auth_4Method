@@ -26,7 +26,7 @@ class MethodLogin extends StatelessWidget {
             _TextButton(
               'Sign in with Google',
               icon: CupertinoIcons.globe,
-              onPressed: () => Get.toNamed(Routes.LOGIN + Routes.LOGIN_PHONE),
+              onPressed: () {},
             ),
             _TextButton(
               'Sign in with Facebook',

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.test_auth.test_auth_firebase">
+    package="com.pvlminh.testAuthFirebase">
    <application
         android:label="test_auth_firebase"
         android:name="${applicationName}"

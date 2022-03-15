@@ -1,4 +1,4 @@
-package com.test_auth.test_auth_firebase
+package com.pvlminh.testAuthFirebase
 
 import io.flutter.embedding.android.FlutterActivity
 

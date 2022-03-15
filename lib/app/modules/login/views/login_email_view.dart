@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_auth_firebase/app/widgets/button_custom.dart';
-import 'package:test_auth_firebase/app/widgets/input_custom.dart';
+import 'package:test_auth_firebase/app/widgets/common/button_custom.dart';
+import 'package:test_auth_firebase/app/widgets/common/input_custom.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/validator.dart';
 import '../controllers/login_email_controller.dart';
@@ -11,7 +11,7 @@ class LoginEmailView extends GetView<LoginEmailController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LoginView'),
+        title: Text('LoginEmailView'),
         centerTitle: true,
       ),
       body: SafeArea(

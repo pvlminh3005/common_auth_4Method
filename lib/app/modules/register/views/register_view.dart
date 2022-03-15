@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:test_auth_firebase/app/utils/validator.dart';
 
 import '../../../routes/app_pages.dart';
-import '../../../widgets/button_custom.dart';
-import '../../../widgets/input_custom.dart';
+import '../../../widgets/common/button_custom.dart';
+import '../../../widgets/common/input_custom.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {

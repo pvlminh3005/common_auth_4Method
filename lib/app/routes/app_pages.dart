@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
 import 'package:test_auth_firebase/app/modules/login/views/login_email_view.dart';
 import 'package:test_auth_firebase/app/modules/login/views/method_login.dart';
-
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
-import '../modules/login/views/login_phone_view.dart';
+import '../modules/login/views/phone/login_phone_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 
@@ -31,7 +30,7 @@ class AppPages {
         ),
         GetPage(
           name: _Paths.LOGIN_PHONE,
-          page: () => LoginPhoneView(),
+          page: () => LoginPhoneBuilder(),
           binding: LoginPhoneBinding(),
         ),
       ],

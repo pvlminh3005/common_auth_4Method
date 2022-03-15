@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "632092174222",
+    "project_id": "testauth-420a2",
+    "storage_bucket": "testauth-420a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632092174222:android:352018fc6c4697b2f826df",
+        "android_client_info": {
+          "package_name": "com.pvlminh.testAuthFirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632092174222-gotq2iod1nomumdto02trbk51ndc7v2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjBjC5CexiCHKwStDwdnoLt0YTRcVxU-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632092174222-gotq2iod1nomumdto02trbk51ndc7v2p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "632092174222-2n1itknlugrti7svao1httn08mt0d120.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pvlminh.testAuthFirebase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
