@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:test_auth_firebase/app/widgets/phone/country_item.dart';
+import 'package:test_auth_firebase/app/packages/firebase_auth/widgets/country_item.dart';
 
 import '../../utils/formatters.dart';
 import 'input_custom.dart';

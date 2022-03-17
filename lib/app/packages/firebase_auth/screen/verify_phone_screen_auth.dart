@@ -2,36 +2,36 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
-class VerifyPhoneView extends StatefulWidget {
-  final String yourPhone, verificationId;
-  final int otpCount;
-  final Function(UserCredential)? onSuccessVerify;
-  final VoidCallback? onSendOTP;
-  final Function(dynamic)? onErrorVerify;
+import '../firebase_auth.dart';
 
-  const VerifyPhoneView({
-    required this.yourPhone,
+class VerifyPhoneScreenAuth extends StatefulWidget {
+  final String verificationId;
+  final String? yourPhone;
+  final Function(UserCredential) onVerifySuccess;
+  final Function(dynamic) onVerifyFailed;
+
+  const VerifyPhoneScreenAuth({
     required this.verificationId,
-    required this.otpCount,
-    this.onSuccessVerify,
-    this.onErrorVerify,
-    this.onSendOTP,
+    this.yourPhone,
+    required this.onVerifySuccess,
+    required this.onVerifyFailed,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<VerifyPhoneView> createState() => _VerifyPhoneViewState();
+  State<VerifyPhoneScreenAuth> createState() => _VerifyPhoneScreenAuthState();
 }
 
-class _VerifyPhoneViewState extends State<VerifyPhoneView> {
-  final _smsCtr = TextEditingController();
-  String get smsCode => _smsCtr.text;
+class _VerifyPhoneScreenAuthState extends State<VerifyPhoneScreenAuth>
+    with FirebaseAuthMixin {
+  final _smsCtrl = TextEditingController();
+  String get smsCode => _smsCtrl.text;
   bool disable = true;
   final isLoading = ValueNotifier(false);
 
   @override
   void dispose() {
-    _smsCtr.dispose();
+    _smsCtrl.dispose();
     isLoading.dispose();
     super.dispose();
   }
@@ -50,8 +50,8 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Pinput(
-              controller: _smsCtr,
-              length: widget.otpCount,
+              controller: _smsCtrl,
+              length: 6,
               onChanged: (value) {
                 setState(() {
                   disable = value.length != 6;
@@ -72,7 +72,7 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
                                 color: Theme.of(context).backgroundColor,
                                 strokeWidth: 1.5,
                               )
-                            : Text('Continue');
+                            : Text('Verify OTP');
                       }),
                 ),
               ),
@@ -88,30 +88,19 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
     );
   }
 
-  void verifyOtp() async {
-    if (smsCode.length == widget.otpCount) {
-      isLoading.value = true;
-      var credentials = PhoneAuthProvider.credential(
-        verificationId: widget.verificationId,
-        smsCode: smsCode,
-      );
-      await FirebaseAuth.instance
-          .signInWithCredential(credentials)
-          .then(widget.onSuccessVerify ?? _buildSuccessVerify)
-          .catchError(widget.onErrorVerify ?? _buildErrorVerify);
-      isLoading.value = false;
-    }
-  }
-
-  void _buildSuccessVerify(value) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Đăng nhập thành công'),
-    ));
-  }
-
-  void _buildErrorVerify(error) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Đăng nhập thất bại'),
-    ));
+  Future<void> verifyOtp() async {
+    isLoading.value = true;
+    await verifyPhoneNumber(
+      verificationId: widget.verificationId,
+      smsCode: smsCode,
+      onError: (error) {
+        isLoading.value = false;
+        widget.onVerifyFailed(error);
+      },
+      onSuccess: (value) {
+        isLoading.value = false;
+        widget.onVerifySuccess(value);
+      },
+    );
   }
 }

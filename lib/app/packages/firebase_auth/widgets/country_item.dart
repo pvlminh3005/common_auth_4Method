@@ -2,7 +2,6 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:test_auth_firebase/app/config/constants/countryCode.dart';
 import 'package:test_auth_firebase/app/data/models/country_code_model.dart';
-import 'package:test_auth_firebase/app/widgets/common/input_custom.dart';
 
 class CountryItem extends StatelessWidget {
   final TextEditingController? controller;
@@ -10,20 +9,24 @@ class CountryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final border = OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.transparent),
+    );
     return Row(
       children: [
-        InputCustom(
-          controller: controller,
-          width: 70.0,
-          showBorder: false,
-          maxLength: 4,
-          style: TextStyle(fontWeight: FontWeight.w600),
-          keyboardType: TextInputType.phone,
-          inputFormatters: [
-            // FilteringTextInputFormatter.allow(
-            //     RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)')),
-          ],
-          onChanged: (value) {},
+        SizedBox(
+          width: 60.0,
+          child: TextFormField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            maxLength: 4,
+            decoration: InputDecoration(
+              border: border,
+              focusedBorder: border,
+              enabledBorder: border,
+              counterText: '',
+            ),
+          ),
         ),
         SizedBox(
           width: 48.0,
