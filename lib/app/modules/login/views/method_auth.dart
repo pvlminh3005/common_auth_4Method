@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_auth_firebase/app/routes/app_pages.dart';
 
-class MethodLogin extends StatelessWidget {
-  const MethodLogin({Key? key}) : super(key: key);
+class MethodAuth extends StatelessWidget {
+  const MethodAuth({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +16,12 @@ class MethodLogin extends StatelessWidget {
             _TextButton(
               'Sign in with Email',
               icon: Icons.email,
-              onPressed: () => Get.toNamed(Routes.LOGIN + Routes.LOGIN_EMAIL),
+              onPressed: () => Get.toNamed(Routes.AUTH + Routes.LOGIN_EMAIL),
             ),
             _TextButton(
               'Sign in with Phone',
               icon: Icons.phone,
-              onPressed: () => Get.toNamed(Routes.LOGIN + Routes.LOGIN_PHONE),
+              onPressed: () => Get.toNamed(Routes.AUTH + Routes.LOGIN_PHONE),
             ),
             _TextButton(
               'Sign in with Google',

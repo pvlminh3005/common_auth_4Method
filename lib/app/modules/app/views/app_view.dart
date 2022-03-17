@@ -32,7 +32,7 @@ class _LoadingViewState extends State<LoadingView> {
   void initState() {
     2.delay(() {
       Get.offAllNamed(
-        Get.find<AuthService>().isSignIn ? Routes.HOME : Routes.LOGIN,
+        Get.find<AuthService>().isSignIn ? Routes.HOME : Routes.AUTH,
       );
     });
     super.initState();

@@ -17,7 +17,7 @@ class HomeController extends GetxController {
   Future<void> signOut() async {
     await 1.delay();
     await authService.signOut();
-    Get.offAllNamed(Routes.LOGIN);
+    Get.offAllNamed(Routes.AUTH);
   }
 
   @override

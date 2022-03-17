@@ -9,9 +9,9 @@ class Validator {
     const String pattern = r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+';
     final RegExp regex = RegExp(pattern);
     if (value == null || value.isEmpty) {
-      return 'Vui lòng nhâp email'.tr;
+      return 'Please enter email'.tr;
     } else if (!regex.hasMatch(value)) {
-      return 'Vui lòng nhập một địa chỉ email hợp lệ'.tr;
+      return 'Please enter the correct email'.tr;
     } else {
       return null;
     }

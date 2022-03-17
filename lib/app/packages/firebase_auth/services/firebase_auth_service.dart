@@ -39,13 +39,19 @@ mixin FirebaseAuthMixin {
     required String email,
     required String password,
   }) async {
+    Get.log(email);
+
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
     } on FirebaseAuthException catch (e) {
-      throw Exception(e);
+      if (e.code == 'user-not-found') {
+        throw Exception('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        throw Exception('Wrong password provided for that user.');
+      }
     }
   }
 
