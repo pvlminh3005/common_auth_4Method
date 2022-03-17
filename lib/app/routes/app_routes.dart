@@ -10,6 +10,7 @@ abstract class Routes {
   //method login
   static const LOGIN_PHONE = _Paths.LOGIN_PHONE;
   static const LOGIN_EMAIL = _Paths.LOGIN_EMAIL;
+  static const LOGIN_GOOGLE = _Paths.LOGIN_GOOGLE;
   static const VERIFY_OTP = _Paths.VERIFY_OTP;
 }
 
@@ -22,5 +23,6 @@ abstract class _Paths {
   //method login
   static const LOGIN_PHONE = '/phone';
   static const LOGIN_EMAIL = '/email';
+  static const LOGIN_GOOGLE = '/google';
   static const VERIFY_OTP = '/verify_otp';
 }

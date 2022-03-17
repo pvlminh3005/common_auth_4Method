@@ -1,21 +1,21 @@
 part of firebase_auth;
 
-class FirebaseAuthService implements FirebaseAuthBase {
-  @override
-  Future<void> loginWithGoogle() async {}
+// class FirebaseAuthService implements FirebaseAuthBase {
+//   @override
+//   Future<void> loginWithGoogle() async {}
 
-  @override
-  Future<void> loginWithMail() async {}
+//   @override
+//   Future<void> loginWithMail() async {}
 
-  @override
-  Future<void> loginWithPhone(String phoneNumber) async {
-    try {
-      FirebaseAuth.instance.signInWithPhoneNumber(phoneNumber);
-    } catch (e) {
-      rethrow;
-    }
-  }
-}
+//   @override
+//   Future<void> loginWithPhone(String phoneNumber) async {
+//     try {
+//       FirebaseAuth.instance.signInWithPhoneNumber(phoneNumber);
+//     } catch (e) {
+//       rethrow;
+//     }
+//   }
+// }
 
 mixin FirebaseAuthMixin {
   final _firebaseAuth = FirebaseAuth.instance;
@@ -55,7 +55,19 @@ mixin FirebaseAuthMixin {
     }
   }
 
-  Future<void> loginWithGoogle() async {}
+  Future<UserCredential> loginWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
   Future<void> loginWithPhone({
     String phoneNumber = '',

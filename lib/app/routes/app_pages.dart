@@ -4,6 +4,7 @@ import 'package:test_auth_firebase/app/modules/login/views/method_auth.dart';
 import 'package:test_auth_firebase/app/modules/login/views/phone/phone_method.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/login/views/google/google_method.dart';
 
 part 'app_routes.dart';
 
@@ -30,6 +31,11 @@ class AppPages {
         GetPage(
           name: _Paths.LOGIN_PHONE,
           page: () => LoginPhoneBuilder(),
+          // binding: LoginPhoneBinding(),
+        ),
+        GetPage(
+          name: _Paths.LOGIN_GOOGLE,
+          page: () => LoginGoogleBuilder(),
           // binding: LoginPhoneBinding(),
         ),
       ],
